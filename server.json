@@ -3,7 +3,7 @@
   "name": "com.thedploy/deployer",
   "title": "The Deployer",
   "description": "Check if a repo will deploy, plan a deploy to your own cloud, and see status, logs and redeploys.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "websiteUrl": "https://thedploy.com",
   "repository": {
     "url": "https://github.com/Avinash147-1193/thedeployer-mcp",
@@ -16,7 +16,16 @@
       "headers": [
         {
           "name": "Authorization",
-          "description": "Bearer, then a personal API key from your Profile page in The Deployer. Without it, only check_repo works.",
+          "description": "Your personal API key, sent as a Bearer token. Without it, only check_repo works.",
+          "value": "Bearer {api_key}",
+          "variables": {
+            "api_key": {
+              "description": "A personal API key from your Profile page in The Deployer.",
+              "placeholder": "dpl_...",
+              "isRequired": true,
+              "isSecret": true
+            }
+          },
           "isRequired": false,
           "isSecret": true
         }
@@ -27,7 +36,7 @@
     {
       "registryType": "npm",
       "identifier": "thedeployer-mcp",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "transport": {
         "type": "stdio"
       },

@@ -1,6 +1,6 @@
 {
   "name": "thedeployer-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server for The Deployer: check whether a repository will deploy, plan a deploy to your own cloud, and see status, logs and redeploys from your AI coding tool.",
   "type": "module",
   "bin": {
