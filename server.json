@@ -1,0 +1,44 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.thedploy/deployer",
+  "title": "The Deployer",
+  "description": "Check if a repo will deploy, plan a deploy to your own cloud, and see status, logs and redeploys.",
+  "version": "0.1.0",
+  "websiteUrl": "https://thedploy.com",
+  "repository": {
+    "url": "https://github.com/Avinash147-1193/thedeployer-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://app.thedploy.com/api/v1/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer, then a personal API key from your Profile page in The Deployer. Without it, only check_repo works.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "thedeployer-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "THEDEPLOYER_API_KEY",
+          "description": "A personal API key from your Profile page in The Deployer. Without it, only check_repo works.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}

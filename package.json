@@ -1,0 +1,41 @@
+{
+  "name": "thedeployer-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for The Deployer: check whether a repository will deploy, plan a deploy to your own cloud, and see status, logs and redeploys from your AI coding tool.",
+  "type": "module",
+  "bin": {
+    "thedeployer-mcp": "index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "deploy",
+    "digitalocean",
+    "aws",
+    "google-cloud",
+    "azure",
+    "claude-code",
+    "cursor"
+  ],
+  "homepage": "https://thedploy.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Avinash147-1193/thedeployer-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Avinash147-1193/thedeployer-mcp/issues"
+  },
+  "license": "MIT",
+  "mcpName": "com.thedploy/deployer"
+}
