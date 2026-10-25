@@ -1,25 +1,41 @@
 # The Deployer MCP server
 
-Use [The Deployer](https://thedploy.com) from Claude Code, Cursor, VS Code and other AI coding tools. Ask
-whether a repository will deploy, plan a deploy, see where your projects stand, read the latest deployment
-log, or put your latest code live, without leaving the editor.
+Let Claude Code, Codex, Cursor, VS Code or any AI coding agent deploy and run your apps with
+[The Deployer](https://thedploy.com). Ask it to put your app online and it checks the code, fixes what
+would stop a deploy, creates the project, sets the environment variables, shows you the hosting plan and its
+monthly cost, launches into your own cloud once you say yes, follows the deployment and fixes what fails.
+Then it redeploys, adds domains, scales, schedules start and stop, attaches databases and more.
 
-The Deployer runs your app in your own DigitalOcean, AWS, Google Cloud or Azure account, so the cloud bills
-you directly.
+The Deployer runs your app in your own DigitalOcean, AWS, Google Cloud or Azure account, or on your own
+servers, so the cloud bills you directly.
 
 ## Tools
 
 | Tool | What it does | Key |
 |---|---|---|
+| `guide` | The Deployer's playbooks for agents: the order of a deploy, what code needs, how to fix failures | Not needed |
 | `check_repo` | Will a public repository deploy? What it found, what's missing, and what it would cost on each cloud | Not needed |
-| `plan_deploy` | The check, plus your connected accounts and projects, and the next step to take | Needed |
-| `status` | Your projects, their live addresses and their latest deployment | Needed |
-| `logs` | The latest deployment's log for a project, with secrets removed | Needed |
-| `redeploy` | Pulls the latest code on a live project's branch and restarts it | Needed |
-| `request_done_for_you` | Asks for a done-for-you Launch or Move; you finish the order in The Deployer | Needed |
+| `plan_deploy` | The check, plus your connected accounts and projects, and the next step to take | Any |
+| `account` | Your connected clouds and code hosts, workspaces, and what the key may do | Any |
+| `status` | Your projects, their live addresses and their latest deployment | Any |
+| `project` | One project in depth, with the exact next step | Any |
+| `deployment` | Where a deployment is, what it waits on, and for a failed one what to fix | Any |
+| `logs` | A deployment's log, with secrets removed | Any |
+| `diagnose` | Read-only checks on a live server: containers, app logs, memory and disk | Any |
+| `redeploy` | Pulls the latest code on a live project's branch and restarts it | Any |
+| `create_project` | Creates a project from a repository and reads its code | Operate |
+| `set_env` | Sets environment variables; values are never shown back | Operate |
+| `launch` | Shows the plan and its cost, then launches after you say yes | Operate |
+| `api_catalog` / `api_schema` / `api` | Everything else: domains, scaling, schedules, databases, access, environments, blueprints, servers, adoption | Reads: any. Changes: Operate |
+| `request_done_for_you` | Asks for a done-for-you Launch or Move; you finish the order in The Deployer | Any |
 
-To create a key, sign in to The Deployer, open **Profile**, and use **API keys and AI coding tools**. The
-page also shows these setups with your key filled in.
+To create a key, sign in to The Deployer, open **Profile**, and use **API keys and AI coding tools**. Choose
+**Operate** to let an agent set up and run projects, or **Look and redeploy**. The page also shows these
+setups with your key filled in.
+
+What an agent can never do with a key: see your cloud or git credentials or your environment variable
+values, change billing, your team or your account, delete projects, databases or servers, or create keys.
+Anything that costs money waits for your yes.
 
 ## Setup
 
@@ -36,6 +52,15 @@ claude mcp add --transport http --scope user thedeployer https://app.thedploy.co
 
 To share the server in a project's `.mcp.json`, use `"Authorization": "Bearer ${THEDEPLOYER_API_KEY}"` as
 the header. Claude Code fills it in from each person's `THEDEPLOYER_API_KEY` environment variable.
+
+**Codex**, in `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.thedeployer]
+command = "npx"
+args = ["-y", "thedeployer-mcp"]
+env = { THEDEPLOYER_API_KEY = "dpl_your_key" }
+```
 
 **Cursor**, in `~/.cursor/mcp.json`:
 
@@ -151,7 +176,7 @@ your key anywhere but the `Authorization` header.
 |---|---|
 | `THEDEPLOYER_API_KEY` | Your personal API key. Without it, only `check_repo` works |
 | `THEDEPLOYER_MCP_URL` | The endpoint, if not `https://app.thedploy.com/api/v1/mcp`. It must use `https://`, except on this computer (`127.0.0.1`, `::1` or `localhost`) |
-| `THEDEPLOYER_TIMEOUT_MS` | How long to wait for one answer, in milliseconds, from 1000 to 600000 (default 120000) |
+| `THEDEPLOYER_TIMEOUT_MS` | How long to wait for one answer, in milliseconds, from 1000 to 600000 (default 200000) |
 
 ```sh
 npm test

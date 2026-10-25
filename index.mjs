@@ -7,16 +7,16 @@
 //
 //   THEDEPLOYER_API_KEY     a personal API key (The Deployer, Profile). Without one, only check_repo works.
 //   THEDEPLOYER_MCP_URL     the endpoint, when it isn't https://app.thedploy.com/api/v1/mcp
-//   THEDEPLOYER_TIMEOUT_MS  how long to wait for one answer, from 1000 to 600000 (default 120000)
+//   THEDEPLOYER_TIMEOUT_MS  how long to wait for one answer, from 1000 to 600000 (default 200000)
 //
 // What it promises: stdout carries only JSON-RPC 2.0 messages and logs go to stderr, every request gets
 // exactly one answer unless the client cancels it, and the key goes nowhere but the Authorization header.
 
 import { createInterface } from 'node:readline'
 
-const VERSION = '0.1.1'
+const VERSION = '0.2.0'
 const DEFAULT_ENDPOINT = 'https://app.thedploy.com/api/v1/mcp'
-const DEFAULT_TIMEOUT_MS = 120000
+const DEFAULT_TIMEOUT_MS = 200000
 const LOOPBACK_HOSTS = new Set(['127.0.0.1', '[::1]', 'localhost'])
 const TOKEN = /^[\x21-\x7e]+$/ // printable ASCII without spaces: all a key, a session id or a version holds
 

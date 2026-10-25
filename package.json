@@ -1,7 +1,7 @@
 {
   "name": "thedeployer-mcp",
-  "version": "0.1.1",
-  "description": "MCP server for The Deployer: check whether a repository will deploy, plan a deploy to your own cloud, and see status, logs and redeploys from your AI coding tool.",
+  "version": "0.2.0",
+  "description": "MCP server for The Deployer: let Claude Code, Codex, Cursor or any AI coding agent take your app from code to live in your own cloud and keep it running: fix the code, set up, launch, fix failures, domains, scaling and more.",
   "type": "module",
   "bin": {
     "thedeployer-mcp": "index.mjs"
@@ -26,7 +26,10 @@
     "google-cloud",
     "azure",
     "claude-code",
-    "cursor"
+    "cursor",
+    "codex",
+    "devops",
+    "ai-agents"
   ],
   "homepage": "https://thedploy.com",
   "repository": {

@@ -385,7 +385,7 @@ test('falls back to the default timeout, with a warning, unless THEDEPLOYER_TIME
     for (const value of ['-1', '1.5', '999', '600001', '99999999999', 'abc']) {
       const { messages, stderr } = await run({ THEDEPLOYER_MCP_URL: server.url, THEDEPLOYER_TIMEOUT_MS: value }, [ping()])
       assert.deepEqual(messages, [{ jsonrpc: '2.0', id: 1, result: {} }], value)
-      assert.match(stderr, /THEDEPLOYER_TIMEOUT_MS must be a whole number of milliseconds from 1000 to 600000\. Using the default, 120000\./, value)
+      assert.match(stderr, /THEDEPLOYER_TIMEOUT_MS must be a whole number of milliseconds from 1000 to 600000\. Using the default, 200000\./, value)
       assert.doesNotMatch(stderr, /abc/)
     }
     for (const value of ['1000', ' 5000 ', '600000', '']) {
