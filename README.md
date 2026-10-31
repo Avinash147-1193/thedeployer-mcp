@@ -27,6 +27,7 @@ servers, so the cloud bills you directly.
 | `set_env` | Sets environment variables; values are never shown back | Operate |
 | `launch` | Shows the plan and its cost, then launches after you say yes | Operate |
 | `api_catalog` / `api_schema` / `api` | Everything else: domains, scaling, schedules, databases, access, environments, blueprints, servers, adoption | Reads: any. Changes: Operate |
+| `fixes` / `fix` / `claim_fix` / `report_fix` / `fix_status` | Code problems a deploy hit, when you choose to have your own agent fix them (The Deployer fixes them itself by default) | Reads: any. Changes: Operate |
 | `request_done_for_you` | Asks for a done-for-you Launch or Move; you finish the order in The Deployer | Any |
 
 To create a key, sign in to The Deployer, open **Profile**, and use **API keys and AI coding tools**. Choose
@@ -37,7 +38,49 @@ What an agent can never do with a key: see your cloud or git credentials or your
 values, change billing, your team or your account, delete projects, databases or servers, or create keys.
 Anything that costs money waits for your yes.
 
-## Setup
+## Setup: sign in, no key
+
+The fastest way: add the server by its address and sign in. Your agent opens The Deployer in your browser, you
+approve it, and that's it: no key to create or paste. Or open **Connections → Coding agents** in The Deployer and
+pick your agent for one-click setup.
+
+Server address: `https://app.thedploy.com/mcp`
+
+**Claude Code**:
+
+```sh
+claude mcp add --transport http --scope user thedeployer https://app.thedploy.com/mcp
+claude mcp login thedeployer
+```
+
+**Claude (claude.ai and Claude Desktop)**: Settings → Connectors → Add custom connector, address
+`https://app.thedploy.com/mcp`.
+
+**Cursor**, in `~/.cursor/mcp.json`, then Cursor Settings → Tools & MCP → thedeployer → Needs login:
+
+```json
+{ "mcpServers": { "thedeployer": { "url": "https://app.thedploy.com/mcp" } } }
+```
+
+**VS Code**: run **MCP: Add Server** → HTTP → `https://app.thedploy.com/mcp`; VS Code asks you to sign in the
+first time Copilot uses it.
+
+**Codex**:
+
+```sh
+codex mcp add thedeployer --url https://app.thedploy.com/mcp
+```
+
+**Gemini CLI**, in `~/.gemini/settings.json`:
+
+```json
+{ "mcpServers": { "thedeployer": { "httpUrl": "https://app.thedploy.com/mcp" } } }
+```
+
+## Setup with a key
+
+For tools that can't sign in, or for CI.
+
 
 The hosted server needs nothing installed. Replace `dpl_your_key` with your key.
 

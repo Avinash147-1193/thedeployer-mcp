@@ -2,14 +2,18 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.thedploy/deployer",
   "title": "The Deployer",
-  "description": "Let your AI agent deploy and run apps in your own cloud: fix code, launch, fix failures, scale.",
-  "version": "0.2.0",
+  "description": "Deploy and run apps in your own AWS, Google Cloud, Azure or DigitalOcean account from any AI agent.",
+  "version": "0.3.0",
   "websiteUrl": "https://thedploy.com",
   "repository": {
     "url": "https://github.com/Avinash147-1193/thedeployer-mcp",
     "source": "github"
   },
   "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://app.thedploy.com/mcp"
+    },
     {
       "type": "streamable-http",
       "url": "https://app.thedploy.com/api/v1/mcp",
@@ -36,7 +40,7 @@
     {
       "registryType": "npm",
       "identifier": "thedeployer-mcp",
-      "version": "0.2.0",
+      "version": "0.1.1",
       "transport": {
         "type": "stdio"
       },
@@ -47,6 +51,15 @@
           "isRequired": false,
           "isSecret": true
         }
+      ]
+    }
+  ],
+  "icons": [
+    {
+      "src": "https://thedploy.com/assets/brand/icon-512.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
       ]
     }
   ]
