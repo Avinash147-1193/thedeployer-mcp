@@ -26,7 +26,7 @@ servers, so the cloud bills you directly.
 | `create_project` | Creates a project from a repository and reads its code | Operate |
 | `set_env` | Sets environment variables; values are never shown back | Operate |
 | `launch` | Shows the plan and its cost, then launches after you say yes | Operate |
-| `api_catalog` / `api_schema` / `api` | Everything else: domains, scaling, schedules, databases, access, environments, blueprints, servers, adoption | Reads: any. Changes: Operate |
+| `api_catalog` / `api_schema` / `api_read` / `api` | Everything else (`api_read` reads, `api` changes): domains, scaling, schedules, databases, access, environments, blueprints, servers, adoption | Reads: any. Changes: Operate |
 | `fixes` / `fix` / `claim_fix` / `report_fix` / `fix_status` | Code problems a deploy hit, when you choose to have your own agent fix them (The Deployer fixes them itself by default) | Reads: any. Changes: Operate |
 | `request_done_for_you` | Asks for a done-for-you Launch or Move; you finish the order in The Deployer | Any |
 
